@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
 export default {
 
   setup() {
-    const user = ref({
+    const user = reactive({ //reactive only works with objects
       name:'Sambert',
       age: 99
     })
@@ -20,11 +20,17 @@ export default {
     setTimeout(function(){
       // uName.value = 'Sam',
       // uAge.value = 33
-      user.value.name = "Sam";
-      user.value.age = 31;
+
+      // ** with refs
+      // user.value.name = "Sam";
+      // user.value.age = 31;
+
+      //**with reactive
+      user.name = "Sam";
+      user.age = 31;
     }, 2000);
 
-    return { userName: user.value.name , age:  user.value.age ,user:user}
+    return { user:user}
   }
   // data() {
   //   return {
