@@ -5,7 +5,8 @@
     <button @click="setAge">ChangeAge</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
-      <input type="text" placeholder="Last Name" v-model="lastName" />
+      <input type="text" placeholder="Last Name"  ref="lastNameInput"/>
+      <button @click="setLastName">Set Last Name</button>
     </div>
   </section>
 </template>
@@ -16,8 +17,9 @@ import { ref, computed , watch } from 'vue'; //isReactive , isRef
 export default {
   setup() {
     const uAge = ref(31);
-    const firstName = ref('asdsad');
-    const lastName = ref('sadds');
+    const firstName = ref('Sammy');
+    const lastName = ref('Khadeira');
+    const lastNameInput = ref(null);
     // const user = reactive({
     //   //reactive only works with objects
     //   name: 'Sambert',
@@ -32,10 +34,14 @@ export default {
     watch([uAge,uName], function(newValue,  oldValue) {
       console.log(oldValue[0]+ ' ' + newValue[0]);
       console.log(oldValue[1]+ ' ' + newValue[1]);
-    }) ;
+    });
 
     function setNewAge() {
       uAge.value = 55;
+    }
+
+    function setLastName() {
+      lastName.value = lastNameInput.value.value;
     }
     // function setFirstName(event) {
     //   firstName.value = event.target.value;
@@ -46,7 +52,6 @@ export default {
 
     // console.log(isReactive(user));
     // console.log(isReactive(uAge.value));
-    console.log(uAge);
 
     // setTimeout(function () {
     //   // uName.value = 'Sam',
@@ -68,10 +73,12 @@ export default {
       userName: uName, //computed
       age: uAge, //change toRef
       setAge: setNewAge, //button
+      setLastName,
       // setFirstName,
       // setLastName,
       firstName,
-      lastName
+      lastName,
+      lastNameInput
     };
   },
   // data() {
