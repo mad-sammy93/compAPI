@@ -1,22 +1,27 @@
 <template>
   <section class="container">
-    <h2>{{ user.name }}</h2>
-    <h3>{{ user.age }}</h3>
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
   </section>
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { ref,reactive ,toRefs} from 'vue';//isReactive , isRef
 
 export default {
 
   setup() {
+    const uAge = ref(31);
     const user = reactive({ //reactive only works with objects
       name:'Sambert',
       age: 99
     })
 
-    console.log(user);
+    // console.log(isReactive(user));
+    // console.log(isReactive(uAge.value));
+    console.log(uAge);
+
+
     setTimeout(function(){
       // uName.value = 'Sam',
       // uAge.value = 33
@@ -29,8 +34,12 @@ export default {
       user.name = "Sam";
       user.age = 31;
     }, 2000);
+      
+    const userRefs = toRefs(user);
 
-    return { user:user}
+
+
+    return { user:user, userName: userRefs.name, age: userRefs.age}
   }
   // data() {
   //   return {
