@@ -2,6 +2,7 @@
   <section class="container">
     <h2>{{ userName }}</h2>
     <h3>{{ age }}</h3>
+    <button @click="setAge">ChangeAge</button>
   </section>
 </template>
 
@@ -16,6 +17,10 @@ export default {
       name:'Sambert',
       age: 99
     })
+
+    function setNewAge() {
+      user.age = 55;
+    }
 
     // console.log(isReactive(user));
     // console.log(isReactive(uAge.value));
@@ -34,12 +39,16 @@ export default {
       user.name = "Sam";
       user.age = 31;
     }, 2000);
+
+    setTimeout(function(){
+      user.age += 31;
+    }, 4000);
       
     const userRefs = toRefs(user);
 
 
 
-    return { user:user, userName: userRefs.name, age: userRefs.age}
+    return { user:user, userName: userRefs.name, age: userRefs.age , setAge: setNewAge}
   }
   // data() {
   //   return {
