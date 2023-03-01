@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'; //isReactive , isRef
+import { ref, computed , watch } from 'vue'; //isReactive , isRef
 
 export default {
   setup() {
@@ -29,9 +29,14 @@ export default {
       return firstName.value + ' ' + lastName.value;
     })
 
-    // function setNewAge() {
-    //   user.age = 55;
-    // }
+    watch([uAge,uName], function(newValue,  oldValue) {
+      console.log(oldValue[0]+ ' ' + newValue[0]);
+      console.log(oldValue[1]+ ' ' + newValue[1]);
+    }) ;
+
+    function setNewAge() {
+      uAge.value = 55;
+    }
     // function setFirstName(event) {
     //   firstName.value = event.target.value;
     // }
@@ -62,7 +67,7 @@ export default {
       // user: user,
       userName: uName, //computed
       age: uAge, //change toRef
-      // setAge: setNewAge, //button
+      setAge: setNewAge, //button
       // setFirstName,
       // setLastName,
       firstName,
