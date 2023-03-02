@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {computed} from 'vue';
+import { computed, inject } from 'vue';
 export default{
     props: ['firstName', 'lastName', 'age'],
     // computed:{ ///Options API
@@ -18,7 +18,10 @@ export default{
         const uName = computed(function() {
             return props.firstName+ ' '+ props.lastName;
         });
-        console.log(context)
+
+
+        const age = inject ('userAge');
+        console.log(context, age);
 
         // context.emit('save-data',1); //works same as this.$emit('save-data',1);
 

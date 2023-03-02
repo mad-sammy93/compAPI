@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref, computed , watch } from 'vue'; //isReactive , isRef
+import { ref, computed , watch, provide } from 'vue'; //isReactive , isRef
 import UserData from './components/UserData.vue';
 
 export default {
@@ -31,6 +31,7 @@ export default {
     //   age: 99,
     // });
 
+    provide('userAge', uAge )
 
     const uName = computed(function(){
       return firstName.value + ' ' + lastName.value;
@@ -91,6 +92,9 @@ export default {
   //     userName: 'Maximilian',
   //   };
   // },
+  // provide() {
+  //   return {age:this.age}
+  // }
 };
 </script>
 
