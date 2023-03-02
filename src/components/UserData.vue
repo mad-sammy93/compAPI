@@ -14,10 +14,13 @@ export default{
     //         return this.firstName+ '  ' + this.lastName;
     //     }
     // },
-    setup(props) {
+    setup(props, context) {
         const uName = computed(function() {
             return props.firstName+ ' '+ props.lastName;
         });
+        console.log(context)
+
+        // context.emit('save-data',1); //works same as this.$emit('save-data',1);
 
         return {userName: uName}
     }
